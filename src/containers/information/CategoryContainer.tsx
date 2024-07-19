@@ -5,47 +5,41 @@ import useInformationStore, { CategoryType } from "@/store/informationStore";
 import { useLayoutEffect, useState } from "react";
 
 
+interface ICategoryContainer {
+  categories: CategoryType[];
+}
 
-const CategoryContainer = () => {
+
+const CategoryContainer = ({ categories }: ICategoryContainer) => {
   const informationStore = useInformationStore();
-  const [activeMainCategory, setActiveMainCategory] = useState<CategoryType | null>(null);
+  const [activeMainCategory, setActiveMainCategory] =
+    useState<CategoryType | null>(
+      categories?.length > 0 ? categories[0] : null,
+    );
   const [isOpenMainModal, setIsOpenMainModal] = useState(false);
   const [isOpenSubModal, setIsOpenSubModal] = useState(false);
 
   const setActiveMainCategoryHandler = (mainCategory: CategoryType) => {
     setActiveMainCategory(mainCategory);
-  }
+  };
 
   const setIsOpenMainModalHandler = (props: boolean) => {
     setIsOpenMainModal(props);
   };
-  
+
   const setIsOpenSubModalHandler = (props: boolean) => {
     setIsOpenSubModal(props);
   };
 
-
   useLayoutEffect(() => {
-    const test = async () => {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/categories`,
-        {
-          method: "GET",
-        },
-      );
-      const data = await response.json();
-      if (data.length > 0) {
-        informationStore.setCategories(data);
-        setActiveMainCategory(data[0]);
-      }
+    if (categories.length > 0) {
+      informationStore.setCategories(categories);
     }
-    try {
-      test();
-    }
-    catch {
-
-    }
-  },[])
+  }, [])
+  
+  // if (categories.length == undefined) {
+  //   throw new Error("Internal Server Error");
+  // }
 
   return (
     <>

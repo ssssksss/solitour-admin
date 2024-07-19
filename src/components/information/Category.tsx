@@ -21,6 +21,7 @@ const Category = ({
   setActiveMainCategoryHandler,
   modalProps,
 }: ICategory) => {
+
   return (
     <div className="flex w-full flex-col gap-[2rem]">
       <section className="flex flex-col">
