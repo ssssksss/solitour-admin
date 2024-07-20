@@ -1,4 +1,5 @@
 import { usersResponseDto } from "@/types/UserDto";
+import { handleKeyDown } from "@/utils/handleKeyDown";
 import Image from "next/image";
 import { useRef } from "react";
 import Pagination from "../Pagenation/Pagination";
@@ -43,10 +44,13 @@ const UserTable = ({
           ref={searchRef}
           className="h-full w-full rounded-lg px-[.5rem]"
           placeholder="닉네임 찾기"
+          onKeyDown={(e) =>
+            handleKeyDown(e)(searchNicknameHandle, searchRef.current?.value as string)
+          }
         />
         <button
           className={"btn"}
-          onClick={()=> searchNicknameHandle(searchRef.current?.value || "")}
+          onClick={() => searchNicknameHandle(searchRef.current?.value || "")}
         >
           찾기
         </button>
@@ -80,7 +84,7 @@ const UserTable = ({
               ))}
             </div>
           </div>
-          <div className="flex-cols flex min-w-max font-semibold bg-primary-4 dark:bg-gray-6 dark:text-dark-content-5">
+          <div className="flex-cols flex min-w-max bg-primary-4 font-semibold dark:bg-gray-6 dark:text-dark-content-5">
             {userList?.map((user, userIndex) => (
               <div key={userIndex} className="grid grid-flow-col flex-wrap ">
                 <div className={`${SPACE[0]} border-b  p-3 `}>{user.id}</div>
