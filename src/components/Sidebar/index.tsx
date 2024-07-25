@@ -39,7 +39,7 @@ const menuGroups = [
         children: [
           { label: "정보 대시보드 ❌", route: "/information/dashboard" },
           { label: "정보 카테고리", route: "/information/category" },
-          { label: "정보 관리❌", route: "/information/management" },
+          { label: "정보 관리", route: "/information/management" },
         ],
       },
       {
