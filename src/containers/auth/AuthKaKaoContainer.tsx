@@ -1,6 +1,6 @@
 "use client";
 
-import AuthLoading from "@/components/auth/AuthLoading";
+import AuthLoading from "@/components/Auth/AuthLoading";
 import useAuthStore from "@/store/authStore";
 import { userResponseDto } from "@/types/UserDto";
 import UrlQueryStringToObject from "@/utils/UrlQueryStringToObject";
@@ -32,8 +32,12 @@ const AuthKaKaoContainer = () => {
             // 액세스 토큰을 이용해서 사용자 정보 조회
             const data = await fetch("/api/auth/user");
             if (data.status == 200) {
-              data.json().then((res: userResponseDto) => {
-                authStore.setUser(res);
+              data.json().then(async (res: userResponseDto) => {
+                  if (!res.isAdmin) {
+                    await fetch("/api/auth/logout");
+                  } else {
+                    authStore.setUser(res);
+                  }
               });
               router.push("/");
             }
