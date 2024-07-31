@@ -19,8 +19,12 @@ const Header = (props: {
       const login = async () => {
         const data = await fetchWithAuth("/api/auth/user");
         if (data.status == 200) {
-          data.json().then((res: userResponseDto) => {
-            authStore.setUser(res);
+          data.json().then(async (res: userResponseDto) => {
+            if (!res.isAdmin) {
+              await fetch("/api/auth/logout");
+            } else {
+              authStore.setUser(res);
+            }
           });
         }
       };
