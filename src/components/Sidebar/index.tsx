@@ -3,11 +3,19 @@
 import ClickOutside from "@/components/ClickOutside";
 import SidebarItem from "@/components/Sidebar/SidebarItem";
 import useLocalStorage from "@/hooks/useLocalStorage";
-import { faBookAtlas, faChartPie, faComments, faFilePen, faGear, faHeadset, faHouse, faUserGear } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBookAtlas,
+  faChartPie,
+  faComments,
+  faFilePen,
+  faGear,
+  faHeadset,
+  faHouse,
+  faUserGear,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
-
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -39,7 +47,7 @@ const menuGroups = [
         children: [
           { label: "정보 대시보드 ❌", route: "/information/dashboard" },
           { label: "정보 카테고리", route: "/information/category" },
-          { label: "정보 관리", route: "/information/management" },
+          { label: "정보 관리❌", route: "/information/management" },
         ],
       },
       {
@@ -48,11 +56,11 @@ const menuGroups = [
             <FontAwesomeIcon icon={faComments} />
           </div>
         ),
-        label: "모임 서비스",
+        label: "모임 서비스❌",
         route: "#",
         children: [
-          { label: "모임 카테고리", route: "/gathering/category" },
-          { label: "모임 관리❌", route: "/gathering/management" },
+          { label: "모임 카테고리❌", route: "/gather/category" },
+          { label: "모임 관리❌", route: "/gather/management" },
         ],
       },
       {
@@ -71,9 +79,9 @@ const menuGroups = [
             <FontAwesomeIcon icon={faGear} />
           </div>
         ),
-        label: "전체 서비스❌",
+        label: "전체 서비스",
         route: "#",
-        children: [{ label: "홈 배너 관리❌", route: "/service/home" }],
+        children: [{ label: "홈 배너 관리", route: "/service/banner" }],
       },
     ],
   },
@@ -120,7 +128,6 @@ const menuGroups = [
 ];
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
-
   const [pageName, setPageName] = useLocalStorage("selectedMenu", "dashboard");
 
   return (
