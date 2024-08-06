@@ -1,5 +1,5 @@
 import LottieAirplane from "@/../public/lottie/loading-airplane.json";
-import LottieComponent from "../common/Loader/lottie/LottieComponent";
+import LottieComponent from "../common/lottie/LottieComponent";
 
 const AuthLoading = () => {
   return (
