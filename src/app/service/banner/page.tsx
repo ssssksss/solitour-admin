@@ -10,7 +10,7 @@ interface PageProps {
 // 서버 사이드에서 데이터 패칭
 async function fetchBannerList(): Promise<Banner[]> {
   const response = await fetch(`${process.env.BACKEND_URL}/api/banner`, {
-    cache: "no-cache"
+    cache: "default"
   });
 
   if (!response.ok) {

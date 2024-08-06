@@ -1,29 +1,29 @@
-import introLottie from "@lottie/solitour-intro-image.json";
+import introLottie from "@/../public/lottie/solitour-auth-intro-image.json";
+import LottieComponent from "@/components/common/lottie/LottieComponent";
 import Image from "next/image";
 import Link from "next/link";
-import LottieComponent from "../common/Loader/lottie/LottieComponent";
-
 const SignIn = () => {
   return (
-    <div className={"flex max-w-[17.1875rem] flex-col pb-[8.125rem]"}>
+    <div className={"mb-[8rem] flex w-[19.5rem] flex-col"}>
       <h1 className={"pb-[1rem] text-4xl font-bold"}> 로그인 </h1>
-      <p className={"text-md text-gray1 w-[19.875rem] font-medium"}>
-        SNS로 솔리투어에 로그인하고 더 많은 서비스를 즐겨보세요!
-      </p>
-      <div className={"relative h-[245px] w-[275px]"}>
-        <LottieComponent
-          lottieFile={introLottie}
-          className="h-full w-[275px]"
-        />
-        <div className="absolute left-[4.625rem] top-[6.0625rem] h-[6.75rem] w-[11rem]">
-          <div className={"relative h-full w-full"}>
-            <Image
-              src={"/images/intro/solitour-intro-image.png"}
-              alt={"solitour-intro-image"}
-              fill={true}
-              style={{ objectFit: "cover" }}
-            />
-          </div>
+      <div className="h-[2.875rem]">
+        <p
+          className={
+            "text-md text-gray1 absolute flex max-w-[21rem] flex-nowrap break-keep font-medium"
+          }
+        >
+          SNS로 솔리투어에 로그인하고 더 많은 서비스를 즐겨보세요!
+        </p>
+      </div>
+      <div className={"relative h-[16.8125rem] w-full"}>
+        <LottieComponent lottieFile={introLottie} className="h-full w-full" />
+        <div className="absolute left-[50%] top-[7.0625rem] h-[6.875rem] w-[11rem] translate-x-[-50%]">
+          <Image
+            src={"/images/auth/solitour-auth-intro-image.svg"}
+            alt={"solitour-intro-image"}
+            fill={true}
+            style={{ objectFit: "cover" }}
+          />
         </div>
       </div>
       <Link

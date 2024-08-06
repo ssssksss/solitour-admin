@@ -1,6 +1,6 @@
 "use client";
 
-import SignIn from "@/components/Auth/SignIn";
+import SignIn from "@/components/auth/SignIn";
 
 
 const SignInContainer = () => {

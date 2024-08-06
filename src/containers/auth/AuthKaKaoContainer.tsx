@@ -1,52 +1,50 @@
 "use client";
 
-import AuthLoading from "@/components/Auth/AuthLoading";
+import AuthLoading from "@/components/auth/AuthLoading";
 import useAuthStore from "@/store/authStore";
-import { userResponseDto } from "@/types/UserDto";
 import UrlQueryStringToObject from "@/utils/UrlQueryStringToObject";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { userResponseDto } from "../../types/UserDto";
 
 const AuthKaKaoContainer = () => {
   const router = useRouter();
   const authStore = useAuthStore();
 
-    useEffect(() => {
-        const _queryStringObject = UrlQueryStringToObject<{
-          [key: string]: string;
-        }>(window.location.href);
-        const kakaoLogin = async () => {
-          try {
-            // 액세스와 리프레시 토큰 발급
-            await fetch(
-              `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth/oauth2/login?type=kakao&redirectUrl=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URL}&code=${_queryStringObject?.code}`,
-              {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  "Access-Control-Allow-Origin": "*",
-                },
-                credentials: "include",
-              },
-            );
-            // 액세스 토큰을 이용해서 사용자 정보 조회
-            const data = await fetch("/api/auth/user");
-            if (data.status == 200) {
-              data.json().then(async (res: userResponseDto) => {
-                  if (!res.isAdmin) {
-                    await fetch("/api/auth/logout");
-                  } else {
-                    authStore.setUser(res);
-                  }
-              });
-              router.push("/");
-            }
-            else {
-              throw "";
-            }
+  useEffect(() => {
+    const _queryStringObject = UrlQueryStringToObject<{
+      [key: string]: string;
+    }>(window.location.href);
+    const kakaoLogin = async () => {
+      try {
+        const response = await fetch(
+          `/api/auth/kakao/getToken?code=${_queryStringObject?.code}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            cache: "no-store",
+            credentials: "include",
+          },
+        );
+
+        if (response.status !== 200) {
+          throw new Error("Failed to login");
+        }
+
+        // 액세스 토큰을 이용해서 사용자 정보 조회
+        const userDataResponse = await fetch("/api/auth/user");
+        if (userDataResponse.status == 200) {
+          const userData = await userDataResponse.json();
+          authStore.setUser(userData as userResponseDto);
+          router.push("/");
+        } else {
+          throw new Error("Failed to fetch user data");
+        }
       } catch (error) {
         console.error("로그인 실패", error);
-        alert("로그인에 실패했습니다.")
+        alert("로그인에 실패했습니다.");
         router.push("/auth/signin");
       }
     };
