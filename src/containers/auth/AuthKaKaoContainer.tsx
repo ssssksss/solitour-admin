@@ -1,6 +1,6 @@
 "use client";
 
-import AuthLoading from "@/components/auth/AuthLoading";
+import AuthLoading from "@/components/Auth/AuthLoading";
 import useAuthStore from "@/store/authStore";
 import UrlQueryStringToObject from "@/utils/UrlQueryStringToObject";
 import { useRouter } from "next/navigation";

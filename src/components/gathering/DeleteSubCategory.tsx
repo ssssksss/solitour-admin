@@ -1,6 +1,6 @@
+import { ConfirmButton } from "@/components/Buttons/ConfirmButton";
 import useGatheringStore, { CategoryType } from "@/store/gatheringStore";
 import useToastifyStore from "@/store/toastifyStore";
-import { ConfirmButton } from "@components/Buttons/ConfirmButton";
 import { useState } from "react";
 interface IDeleteSubCategory {
   activeMainCategory: CategoryType | null;
