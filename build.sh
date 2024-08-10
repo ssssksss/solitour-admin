@@ -1,5 +1,5 @@
 #!/bin/sh
 cd ../
 mkdir output
-cp -R ./solitour-frontend/* ./output
-cp -R ./output ./solitour-frontend/
+cp -R ./solitour-admin/* ./output
+cp -R ./output ./solitour-admin/
