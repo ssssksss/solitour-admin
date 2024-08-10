@@ -56,11 +56,11 @@ const menuGroups = [
             <FontAwesomeIcon icon={faComments} />
           </div>
         ),
-        label: "모임 서비스❌",
+        label: "모임 서비스",
         route: "#",
         children: [
-          { label: "모임 카테고리❌", route: "/gather/category" },
-          { label: "모임 관리❌", route: "/gather/management" },
+          { label: "모임 카테고리", route: "/gathering/category" },
+          { label: "모임 관리❌", route: "/gathering/management" },
         ],
       },
       {
