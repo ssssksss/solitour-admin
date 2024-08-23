@@ -5,14 +5,6 @@ import { devtools } from "zustand/middleware";
 export type CategoryType = {
   id: number;
   name: string;
-  childrenCategories: {
-    id: number;
-    name: string;
-    parentCategoryType: {
-      id: number;
-      name: string;
-    };
-  }[];
 };
 
 // 2. 상태 인터페이스 정의

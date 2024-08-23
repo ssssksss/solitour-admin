@@ -1,7 +1,6 @@
 import { CategoryType } from "@/store/gatheringStore";
 import { Modal } from "../Modal/Modal";
 import MainCategoryModal from "../Modal/gathering/MainCategoryModal";
-import SubCategoryModal from "../Modal/gathering/SubCategoryModal";
 
 interface ICategory {
   categories: CategoryType[];
@@ -49,28 +48,6 @@ const Category = ({
           ))}
         </div>
       </section>
-      <section className="flex flex-col">
-        <article className="mb-[2rem] flex gap-[1rem]">
-          <h2 className="text-3xl font-bold"> 서브 카테고리 </h2>
-          {activeMainCategory?.id && (
-            <div className="flex items-center justify-center">
-              <button
-                onClick={() => modalProps.setIsOpenSubModalHandler(true)}
-                className="btn btn-outline btn-sm aspect-square w-[2rem] hover:bg-secondary"
-              >
-                +
-              </button>
-            </div>
-          )}
-        </article>
-        <div className="flex gap-[1rem]">
-          {activeMainCategory?.childrenCategories?.map((i) => (
-            <button key={i.id} className="btn btn-outline btn-secondary">
-              {i.name}
-            </button>
-          ))}
-        </div>
-      </section>
       <Modal
         isOpen={modalProps.isMainModal}
         onClose={() => modalProps.setIsOpenMainModalHandler(false)}
@@ -78,16 +55,6 @@ const Category = ({
       >
         <MainCategoryModal
           closeModal={() => modalProps.setIsOpenMainModalHandler(false)}
-        />
-      </Modal>
-      <Modal
-        isOpen={modalProps.isSubModal}
-        onClose={() => modalProps.setIsOpenSubModalHandler(false)}
-        className="flex items-center justify-center"
-      >
-        <SubCategoryModal
-          activeMainCategory={activeMainCategory}
-          closeModal={() => modalProps.setIsOpenSubModalHandler(false)}
         />
       </Modal>
     </div>
