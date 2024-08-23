@@ -1,6 +1,5 @@
 // app/page.tsx
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
-import BannerContainer from "@/containers/service/BannerContainer";
 import { Banner } from "@/types/BannerDto";
 
 interface PageProps {
@@ -21,13 +20,14 @@ async function fetchBannerList(): Promise<Banner[]> {
 }
 
 export default async function HomePage() {
-  const initBannerList = await fetchBannerList();
+  // const initBannerList = await fetchBannerList();
 
   return (
     <DefaultLayout>
-      <BannerContainer
+      서버에 데이터 연결 필요
+      {/* <BannerContainer
         initBannerList={initBannerList.length > 0 ? initBannerList : []}
-      />
+      /> */}
     </DefaultLayout>
   );
 }
