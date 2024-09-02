@@ -1,6 +1,5 @@
 import SearchForm from "@/components/Header/SearchForm";
 import useAuthStore from "@/store/authStore";
-import { userResponseDto } from "@/types/UserDto";
 import { fetchWithAuth } from "@/utils/fetchWithAuth";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,19 +15,24 @@ const Header = (props: {
 
     useLayoutEffect(() => {
       // 자동 로그인
-      const login = async () => {
-        const data = await fetchWithAuth("/api/auth/user");
-        if (data.status == 200) {
-          data.json().then(async (res: userResponseDto) => {
-            if (!res.isAdmin) {
-              await fetch("/api/auth/logout");
-            } else {
-              authStore.setUser(res);
-            }
+   const login = async () => {
+      try {
+        const res = await fetchWithAuth("/api/auth/user");
+        if (res.status == 200) {
+          const data = await res.json();
+            authStore.setUser(data);
+        } else {
+          authStore.setUser({
+            id: -1,
           });
         }
-      };
-      login();
+      } catch {
+        authStore.setUser({
+          id: -1,
+        });
+      }
+    };
+    login();
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

@@ -24,10 +24,16 @@ export async function GET(request: NextRequest) {
     cache: "no-store",
   });
 
-  if (response.status === 200) {
+  if (response.ok) {
     const data = await response.json();
     return new NextResponse(JSON.stringify(data), {
       status: 200,
+    });
+  }
+
+  if (response.status == 401) {
+    return new NextResponse("토큰 만료", {
+      status: 401,
     });
   }
 
