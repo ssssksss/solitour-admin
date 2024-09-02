@@ -81,7 +81,12 @@ const menuGroups = [
         ),
         label: "전체 서비스",
         route: "#",
-        children: [{ label: "홈 배너 관리", route: "/service/banner" }],
+        children: [
+          { label: "홈 배너 관리", route: "/service/banner" },
+          { label: "공지사항", route: "/service/notice" },
+          { label: "QnA 관리", route: "/service/qna" },
+          { label: "문의하기", route: "/service/contact" },
+        ],
       },
     ],
   },

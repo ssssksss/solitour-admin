@@ -24,7 +24,7 @@ const config: Config = {
         transparent: "transparent",
         white: "#FFFFFF",
         primary: {
-          DEFAULT: "#22AD5C",
+          DEFAULT: "#00B488",
           dark: "#156F3C",
           3: "#374151",
           4: "#76CA99",
