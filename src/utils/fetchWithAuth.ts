@@ -7,6 +7,12 @@ export async function fetchWithAuth(url: string, options = {}, retries = 1) {
       // 토큰 갱신
       const data = await fetch(
         `/api/auth/refresh-access-token`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
       );
       if (data.status == 401) {
         return Promise.reject({

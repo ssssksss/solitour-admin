@@ -1,4 +1,3 @@
-import { fetchWithAuth } from "@/utils/fetchWithAuth";
 import UrlQueryStringToObject from "@/utils/UrlQueryStringToObject";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -17,7 +16,7 @@ export async function GET(request: NextRequest) {
       nickname: string,
     } | undefined = UrlQueryStringToObject(request.url)
     // 사용자 정보 조회 API
-    const response = await fetchWithAuth(`${process.env.BACKEND_URL}/api/admin/user/list?page=${params?.page}&nickname=${params?.nickname}`, {
+    const response = await fetch(`${process.env.BACKEND_URL}/api/admin/user/list?page=${params?.page}&nickname=${params?.nickname}`, {
       method: "GET",
       headers: {
         Cookie: `${access_cookie?.name}=${access_cookie?.value}`,

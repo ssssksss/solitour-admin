@@ -1,4 +1,3 @@
-import { fetchWithAuth } from "@/utils/fetchWithAuth";
 import UrlQueryStringToObject from "@/utils/UrlQueryStringToObject";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -17,7 +16,7 @@ export async function GET(request: NextRequest) {
       nickname: string,
     } | undefined = UrlQueryStringToObject(request.url)
     // 사용자 정보 조회 API
-    const response = await fetchWithAuth(
+    const response = await fetch(
       `${process.env.BACKEND_URL}/api/admin/information/list?page=${params?.page}&nickname=${params?.nickname}`,
       {
         method: "GET",
@@ -29,11 +28,7 @@ export async function GET(request: NextRequest) {
       },
     );
 
-    const data = await response.json();
-    return new NextResponse(JSON.stringify(data), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return response;
   } catch (error) {
     return new NextResponse("Internal Server Error", { status: 500 });
   }

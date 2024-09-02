@@ -5,6 +5,7 @@ import Pagination from "@/components/Pagination/Pagination";
 import QnAResponseModal from "@/components/support/qna/QnAResponseModal";
 import SupportQnAList from "@/components/support/qna/SupportQnAList";
 import useModalState from "@/hooks/useModalState";
+import { fetchWithAuth } from "@/utils/fetchWithAuth";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -37,7 +38,7 @@ const SupportQnAListContainer = () => {
   const modalState = useModalState();
   const fetchQnAList = async () => {
     const url = `/api/qna?page=${currentPage}&status=${status}&keyword=${keyword}`;
-    const response = await fetch(url, {
+    const response = await fetchWithAuth(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
   const cookie = request.cookies.get("refresh_token");
   if (!cookie) {
@@ -29,7 +29,6 @@ export async function GET(request: NextRequest) {
     }
     return result;
   } catch (error) {
-    console.error(error);
     return new NextResponse("살려줘" , { status: 500 });
   }
 }
