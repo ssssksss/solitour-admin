@@ -1,7 +1,6 @@
 import { InformationDto } from "@/types/InformationDto";
 import { handleKeyDown } from "@/utils/handleKeyDown";
 import { useRef } from "react";
-import Pagination from "../Pagenation/Pagination";
 
 interface IInformationTable {
   informationList: InformationDto[];
@@ -118,10 +117,10 @@ const InformationTable = ({
         </div>
       </div>
       <div className="sticky bottom-0 mb-[1rem] w-[calc(100%)] bg-dark-8 shadow-lg dark:bg-dark-6 dark:text-white">
-        <Pagination
+        {/* <Pagination
           endPage={Math.ceil(count / 10)}
           refetch={changePageHandle}
-        />
+        /> */}
       </div>
     </div>
   );
