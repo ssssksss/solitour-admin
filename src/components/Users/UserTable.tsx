@@ -2,7 +2,6 @@ import { usersResponseDto } from "@/types/UserDto";
 import { handleKeyDown } from "@/utils/handleKeyDown";
 import Image from "next/image";
 import { useRef } from "react";
-import Pagination from "../Pagenation/Pagination";
 
 interface IUserTable {
   userList: usersResponseDto[];
@@ -45,7 +44,10 @@ const UserTable = ({
           className="h-full w-full rounded-lg px-[.5rem]"
           placeholder="닉네임 찾기"
           onKeyDown={(e) =>
-            handleKeyDown(e)(searchNicknameHandle, searchRef.current?.value as string)
+            handleKeyDown(e)(
+              searchNicknameHandle,
+              searchRef.current?.value as string,
+            )
           }
         />
         <button
@@ -144,12 +146,15 @@ const UserTable = ({
             ))}
           </div>
         </div>
-        <div className="absolute bottom-8 w-[calc(100%-3rem)] bg-dark-8 shadow-lg dark:bg-dark-6 dark:text-white">
+        {/* <div className="absolute bottom-8 w-[calc(100%-3rem)] bg-dark-8 shadow-lg dark:bg-dark-6 dark:text-white">
           <Pagination
-            endPage={Number(count / 10 + 1)}
-            refetch={changePageHandle}
+            // endPage={Number(count / 10 + 1)}
+            // refetch={changePageHandle}
+            currentPage={}
+            totalPages={Number(count / 10 + 1)}
+            pageHandler={() => {}}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
