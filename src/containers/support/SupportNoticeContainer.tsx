@@ -3,6 +3,7 @@
 import Pagination from "@/components/Pagination/Pagination";
 import SupportNoticeList from "@/components/support/SupportNoticeList";
 import { NoticeType } from "@/types/NoticeDto";
+import { fetchWithAuth } from "@/utils/fetchWithAuth";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -27,7 +28,7 @@ const SupportNoticeContainer = (props: ISupportNoticeContainer) => {
   };
 
   const fetchNotice = async (page: number) => {
-    const response = await fetch(`/api/notice?page=${page}`);
+    const response = await fetchWithAuth(`/api/notice?page=${page}`);
     const data = await response.json();
     setElements(data.content);
     setTotalPages(data.page.totalPages);

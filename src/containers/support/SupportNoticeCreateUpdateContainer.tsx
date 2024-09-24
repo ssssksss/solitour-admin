@@ -2,6 +2,7 @@
 
 import SupportNoticeCreateUpdate from "@/components/support/SupportNoticeCreateUpdate";
 import { NoticeType } from "@/types/NoticeDto";
+import { fetchWithAuth } from "@/utils/fetchWithAuth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -43,7 +44,7 @@ const SupportNoticeCreateUpdateContainer: React.FC<
               content,
               id: props.data.id
             };
-        const response = await fetch(`/api/notice`, {
+        const response = await fetchWithAuth(`/api/notice`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -64,8 +65,8 @@ const SupportNoticeCreateUpdateContainer: React.FC<
               category,
               title,
               content,
-            };
-        const response = await fetch("/api/notice", {
+        };
+        const response = await fetchWithAuth("/api/notice", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

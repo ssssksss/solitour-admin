@@ -1,3 +1,4 @@
+import QuillEditor from "@/containers/common/QuillEditor";
 import React from "react";
 
 interface ISupportNoticeCreateUpdate {
@@ -57,11 +58,18 @@ const SupportNoticeCreateUpdate: React.FC<ISupportNoticeCreateUpdate> = ({
         onChange={(e) => setNoticeTitle(e.target.value)}
       />
 
-      <textarea
+      {/* <textarea
         placeholder="공지사항 내용을 입력하세요"
         className="min-h-[320px] w-full resize-none rounded-lg border border-gray-300 p-4 transition duration-200 focus:border-blue-500 focus:outline-none focus:ring focus:ring-blue-200"
         value={noticeContent}
         onChange={(e) => setNoticeContent(e.target.value)}
+      /> */}
+
+      <QuillEditor
+        content={noticeContent}
+        onChange={(value: string, length: number) => {
+          setNoticeContent(value);
+        }}
       />
 
       <button
